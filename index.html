@@ -355,7 +355,7 @@
                                 <h2 class="title is-3">Proposed Pipeline</h2>
                                 <div class="content has-text-justified">
                                   <p>
-                                      Our proposed pipeline consists of three stages
+                                      Our proposed pipeline consists of three stages. It starts with raw, stereo, and IMU data for VIO. PlaneRecNet generates plane masks from consecutive frames. Homography from feature matching is applied to plane masks, creating difference images and plane IDs. The raw image at <i>i+1</i> and the differential image between <i>i</i> and <i>i+1</i> are input to MPP-T and DPP-T networks, yielding outputs <i>X</i> and <i>V</i>. These outputs, along with camera pose, normal estimates, and plane IDs <i>k</i>, are used in an optimization layer to produce the final trajectory. The figure on the right is the detailes patch processing transformer architecture.
                                     </p>
                                 </div>
                                 <div class="columns is-vcentered">
