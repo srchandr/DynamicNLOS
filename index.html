@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Dynamic Non-Line-of-Sight Tracking with Mobile Robots: An Attention Network Approach">
+        <meta name="keywords" content="NLOS, Attention, Drone, Human Tracking">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dynamic Non-Line-of-Sight Tracking with Mobile Robots: An Attention Network Approach</title>
+        <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+        <link rel="stylesheet" href="./static/css/bulma.min.css">
+        <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+        <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+        <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <!-- <link rel="stylesheet" href="./static/css/index.css"> -->
+        <link rel="icon" href="./static/images/favicon.svg">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script defer src="./static/js/fontawesome.all.min.js"></script>
+        <script src="./static/js/bulma-carousel.min.js"></script>
+        <script src="./static/js/bulma-slider.min.js"></script>
+        <script src="./static/js/index.js"></script>
+        <style>
+          body {
+  font-family: 'Castoro', serif;
+}
+
+.hero,
+.teaser,
+.section {
+  margin-bottom: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.hero-body {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+/* .title {
+  color: hsl(204, 86%, 53%);
+} */
+
+.publication-title {
+  font-family: 'Castoro', serif;
+  font-size: 2rem;
+}
+
+.publication-authors a {
+  color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+  text-decoration: underline;
+}
+
+.publication-video {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.publication-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.publication-body img {
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 0;
+  font-size: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.interpolation-panel {
+  background: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.interpolation-panel .interpolation-image {
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.interpolation-video-column {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#interpolation-image-wrapper {
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#interpolation-image-wrapper img {
+  border-radius: 5px;
+}
+
+.footer {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.footer .icon-link {
+  font-size: 25px;
+  color: #000;
+}
+
+.link-block a {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.link-block a:hover {
+  text-decoration: underline;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+.teaser .hero-body {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.teaser {
+  font-family: 'Castoro', serif;
+}
+
+.publication-banner {
+  max-height: parent;
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+  font-family: 'Castoro', serif;
+}
+
+.publication-authors {
+  font-family: 'Castoro', serif;
+}
+
+.publication-venue {
+  color: #555;
+  width: fit-content;
+  font-weight: bold;
+}
+
+.publication-awards {
+  color: #ff3860;
+  width: fit-content;
+  font-weight: bolder;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 0;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+#interpolation-image-wrapper {
+  width: 100%;
+}
+
+        </style>
+    </head>
+    <body>
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container is-max-desktop">
+                    <div class="columns is-centered">
+                        <div class="column has-text-centered">
+                            <h1 class="title is-1 publication-title">
+                              Dynamic Non-Line-of-Sight Tracking with Mobile Robots: An Attention Network Approach
+                            </h1>
+                                                           
+
+                                <div class="is-size-5 publication-authors">
+                                  <span class="author-block">
+                                    <a>Shenbagaraj Kannapiran</a>
+                                    <sup>*</sup>,
+                                  </span>
+                                  <span class="author-block">
+                                    <a>Sreenithy Chandran</a>
+                                    <sup>*</sup>,
+                                  </span>
+                                  <span class="author-block">
+                                    <a>Suren Jayasuriya</a>,
+                                  </span>
+                                  <span class="author-block">
+                                    <a>Spring Berman</a>,
+                                  </span>
+                                  <span class="author-block">
+                                    <a>Arizona State University</a>
+                                  </span>
+                                  <div class="is-size-5 publication-authors">
+                                    <span class="author-block">
+                                      <sup>*</sup>
+                                      equal contribution
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="column has-text-centered">
+                                    <div class="publication-links">
+                                        <!-- PDF Link. -->
+                                        <span class="link-block">
+                                            <a href="#" class="external-link button is-normal is-rounded is-dark">
+                                                <span class="icon">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                </span>
+                                                <span>Paper</span>
+                                            </a>
+                                        </span>
+                                        <span class="link-block">
+                                            <a href="#" class="external-link button is-normal is-rounded is-dark">
+                                                <span class="icon">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                </span>
+                                                <span>Supplemental Video</span>
+                                            </a>
+                                        </span>
+
+                                        <!-- Dataset Link. -->
+                                        <span class="link-block">
+                                            <a href="#" class="external-link button is-normal is-rounded is-dark">
+                                              <span class="icon">
+                                                <i class="far fa-images"></i>
+                                            </span>
+                                                <span>Dataset (coming soon)</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="hero teaser">
+                    <div class="container is-max-desktop">
+                        <div class="columns is-vcentered">
+                            <div class="column has-text-centered">
+                                <img src="./static/images/Picture1.jpg" alt="Teaser Image">
+                                <p>
+                                  An aerial drone equipped with a forward-facing camera moves in an occluded region while capturing images of multiple relay walls, here viewed through an open door, that are within its field-of-view (FOV region). A person (NLOS object) walks around an area that is not visible to the drone (NLOS region). Our method estimates the person's 2D trajectory by leveraging the light scatter information in the drone's images of the relay walls.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section">
+                    <div class="container is-max-desktop">
+                        <!-- Abstract. -->
+                        <div class="columns is-centered has-text-centered">
+                            <div class="column is-four-fifths">
+                                <h2 class="title is-3">Abstract</h2>
+                                <div class="content has-text-justified">
+                                    <p>
+                                      The study of non-line-of-sight (NLOS) imaging is becoming increasingly popular due to its many potential applications, including rescue operations and pedestrian detection by self-driving cars. However, deploying NLOS imaging  to a moving camera scenario remains an open area of research. Existing NLOS imaging methods rely on time-resolved detectors and laser configurations that require precise optical alignment, making it difficult to deploy them in dynamic environments.  
+                                    </p>
+                                    <p>
+                                      This work proposes a data-driven approach to NLOS imaging that can be used by a small, power-constrained mobile robot, such as an aerial drone, to localize the 2D position of an occluded human and track their trajectory in time as they move.
+                                    </p>
+                                    <p>
+                                      Our experimental pipeline uses a standard RGB camera and is designed to accurately estimate the position of an object that is hidden from the camera's view in real-world Manhattan environments.
+                                    </p>
+                                    <p>
+                                      We introduce a novel approach to handle a sequence of dynamic successive frames in a line-of-sight (LOS) video using an attention-based neural network. The method also includes a preprocessing selection metric that analyzes images from a moving camera consisting of vertical planar surfaces, such as walls and building facades, and extracts  planes that return maximum NLOS information. We validate the approach on in-the-wild scenes using a drone for video capture and demonstrate low-cost, real-time NLOS with dynamic capture environments.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ Abstract. -->
+                    </div>
+                </section>
+                <section class="section">
+                    <div class="container is-max-desktop">
+                        <!-- Paper video. -->
+                        <div class="columns is-centered has-text-centered">
+                            <div class="column is-four-fifths">
+                                <h2 class="title is-3">Video</h2>
+                                <div class="publication-video">
+                                    <iframe
+                                        src="./static/videos/IROS24.mp4"
+                                        frameborder="0"
+                                        allow="autoplay; encrypted-media"
+                                        allowfullscreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ Paper video. -->
+                    </div>
+                </section>
+                <section class="section">
+                    <div class="container is-max-desktop">
+                        <!-- Pipeline. -->
+                        <div class="columns is-centered has-text-centered">
+                            <div class="column is-full-width">
+                                <h2 class="title is-3">Proposed Pipeline</h2>
+                                <div class="content has-text-justified">
+                                  <p>
+                                      Our proposed pipeline consists of three stages
+                                    </p>
+                                </div>
+                                <div class="columns is-vcentered">
+                                    <div class="column has-text-centered">
+                                        <img src="./static/images/inference.jpg" alt="Pipeline ">
+                                        <p>Full training and inference pipeline of our system.</p>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </section>
+
+                   
+                   
+                    <footer class="footer">
+                        <div class="columns is-centered">
+                            <div class="column is-8">
+                                <div class="content">
+                                    <p>
+                                        This website is licensed under a
+                                        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                                            Creative
+              Commons Attribution-ShareAlike 4.0 International License
+                                        </a>
+                                        .
+                                    </p>
+                                    <p>
+                                        Website template borrowed from
+                                        <a href="https://github.com/nerfies/nerfies.github.io">source code</a>
+                                        .
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </body>
+        </html>
