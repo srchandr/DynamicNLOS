@@ -227,9 +227,8 @@
                     <div class="columns is-centered">
                         <div class="column has-text-centered">
                             <h1 class="title is-1 publication-title">
-                              Dynamic Non-Line-of-Sight Tracking with Mobile Robots: An Attention Network Approach
-                            </h1>
-                                                           
+                              PathFinder: Attention-Driven Dynamic Non-Line-of-Sight Tracking with a Mobile Robot
+                            </h1>                   
 
                                 <div class="is-size-5 publication-authors">
                                   <span class="author-block">
@@ -260,21 +259,14 @@
                                     <div class="publication-links">
                                         <!-- PDF Link. -->
                                         <span class="link-block">
-                                            <a href="#" class="external-link button is-normal is-rounded is-dark">
-                                                <span class="icon">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </span>
-                                                <span>Paper</span>
-                                            </a>
+                                          <a href="https://arxiv.org/pdf/2404.05024" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                              <i class="fas fa-file-pdf"></i>
+                                            </span>
+                                            <span>Paper</span>
+                                          </a>
                                         </span>
-                                        <span class="link-block">
-                                            <a href="#" class="external-link button is-normal is-rounded is-dark">
-                                                <span class="icon">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </span>
-                                                <span>Supplemental Video</span>
-                                            </a>
-                                        </span>
+
 
                                         <!-- Dataset Link. -->
                                         <span class="link-block">
@@ -311,17 +303,14 @@
                                 <h2 class="title is-3">Abstract</h2>
                                 <div class="content has-text-justified">
                                     <p>
-                                      The study of non-line-of-sight (NLOS) imaging is becoming increasingly popular due to its many potential applications, including rescue operations and pedestrian detection by self-driving cars. However, deploying NLOS imaging  to a moving camera scenario remains an open area of research. Existing NLOS imaging methods rely on time-resolved detectors and laser configurations that require precise optical alignment, making it difficult to deploy them in dynamic environments.  
-                                    </p>
-                                    <p>
-                                      This work proposes a data-driven approach to NLOS imaging that can be used by a small, power-constrained mobile robot, such as an aerial drone, to localize the 2D position of an occluded human and track their trajectory in time as they move.
-                                    </p>
-                                    <p>
-                                      Our experimental pipeline uses a standard RGB camera and is designed to accurately estimate the position of an object that is hidden from the camera's view in real-world Manhattan environments.
-                                    </p>
-                                    <p>
-                                      We introduce a novel approach to handle a sequence of dynamic successive frames in a line-of-sight (LOS) video using an attention-based neural network. The method also includes a preprocessing selection metric that analyzes images from a moving camera consisting of vertical planar surfaces, such as walls and building facades, and extracts  planes that return maximum NLOS information. We validate the approach on in-the-wild scenes using a drone for video capture and demonstrate low-cost, real-time NLOS with dynamic capture environments.
-                                    </p>
+                                      The study of non-line-of-sight (NLOS) imaging is growing due to its many potential applications, including rescue operations and pedestrian detection by self-driving cars. However, implementing NLOS imaging on  a moving camera remains an open area of research. Existing NLOS imaging methods rely on time-resolved detectors and laser configurations that require precise optical alignment, making it difficult to deploy them in dynamic environments. 
+                                      </p>
+                                      <p>
+                                        This work proposes a data-driven approach to NLOS imaging, PathFinder, that can be used with a standard RGB camera mounted on a small, power-constrained mobile robot, such as an aerial drone. Our experimental pipeline is designed to accurately estimate  the 2D trajectory of a person who moves in a Manhattan-world environment while remaining hidden from the camera's field-of-view. 
+                                      </p>
+                                      <p> 
+                                        We introduce a novel approach to process a sequence of dynamic successive frames in a line-of-sight (LOS) video using an attention-based neural network that performs inference in real-time. The method also includes a preprocessing selection metric that analyzes images from a moving camera which contain multiple vertical planar surfaces, such as walls and building facades, and extracts planes that return maximum NLOS information. We validate the approach on in-the-wild scenes using a drone for video capture, thus demonstrating low-cost NLOS imaging in dynamic capture environments. 
+                                    </p>                                   
                                 </div>
                             </div>
                         </div>
@@ -362,13 +351,11 @@
                                     <div class="column has-text-centered">
                                         <img src="./static/images/inference.jpg" alt="Pipeline ">
                                         <p>Full training and inference pipeline of our system.</p>
-                                    </div>
                                 </div>
-                                
-                                
+                                </div>
                             </div>
                         </div>
-                    </section>
+                </section>
 
                    
                    
